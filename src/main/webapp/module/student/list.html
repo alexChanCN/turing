@@ -1,0 +1,16 @@
+<div class="weui-btn-area">
+    <button class="weui-btn weui-btn_primary" id="showTooltips" ng-click="addLesson()">添加班级</button>
+</div>
+<div class="weui-btn-area">
+    <button class="weui-btn weui-btn_primary"  ng-click="addStudent()">添加学生</button>
+</div>
+<div style="padding-top: 6%" class="weui-cells__title">当前班级学生</div>
+<div class="weui-cells">
+    <div class="weui-cell" ng-click="delete(x.id)" ng-repeat="x in students">
+        <div class="weui-cell__bd">
+            <p>{{x.name}}</p>
+        </div>
+        <div class="weui-cell__ft">{{ x.studentId}}</div>
+    </div>
+
+</div>

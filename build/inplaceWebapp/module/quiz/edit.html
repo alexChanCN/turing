@@ -1,0 +1,25 @@
+<div style="padding-top: 4%" class="weui-cells__title">提问评价打分</div>
+<form name="form">
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">分数</label></div>
+            <div class="weui-cell__bd">
+                <input ng-required="true" class="weui-input" ng-model="quiz.score" type="number" pattern="[0-9]*"
+                       placeholder="请输入分数">
+            </div>
+        </div>
+    </div>
+    <div class="weui-btn-area">
+        <button type="submit" ng-disabled="form.$invalid" class="weui-btn weui-btn_primary" id="showTooltips" ng-click="add()">确定</button>
+    </div>
+</form>
+<div style="padding-top: 6%" class="weui-cells__title">历史分数</div>
+<div class="weui-cells">
+    <div class="weui-cell"ng-click="delete(x.id)" ng-repeat="x in quizs">
+        <div class="weui-cell__bd">
+            <p>{{x.score}}分</p>
+        </div>
+        <div class="weui-cell__ft">{{ x.date | date:'yyyy-MM-dd' }}</div>
+    </div>
+
+</div>

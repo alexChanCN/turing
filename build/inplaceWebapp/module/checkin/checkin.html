@@ -1,0 +1,40 @@
+<link rel="stylesheet"
+      href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<nav class="navbar navbar-inverse">
+    <div class="container col-md-offset-2">
+        <div class="header">
+            <a style="color: white;" class="navbar-brand">最近三次签到情况</a>
+        </div>
+    </div>
+</nav>
+<div class="panel-group container col-md-8 col-md-offset-2"
+     id="accordion" role="tablist" aria-multiselectable="true">
+    <table class="table table-bordered">
+        <thead>
+        <tr class="active">
+            <th class="col-sm-3 col-xs-3">姓名</th>
+            <th class="col-sm-2 col-xs-2 ">{{data.dates[0]| date:'MM-dd'}}</th>
+            <th class="col-sm-2 col-xs-2">{{data.dates[1]| date:'MM-dd'}}</th>
+            <th class="col-sm-2 col-xs-2">{{data.dates[2]| date:'MM-dd'}}</th>
+        </tr>
+        </thead>
+
+        <tbody ng-repeat="x in data.list">
+        <tr>
+            <td>{{x.student.name}}</td>
+            <!--<td>{{x.status[0]}}</td>
+            <td>{{x.status[1]}}</td>
+            <td>{{x.status[2]}}</td>-->
+            <td ng-click="delete(x.student.id,data.dates[0])" ng-show="x.status[0]==1"><a style="color: #32CD32" href="javascript:void(0)">√</a></td>
+            <td ng-click="add(x.student.id,data.dates[0])" ng-show="x.status[0]==0"><a style="color: #FF0000" href="javascript:void(0)">x</a></td>
+            <td ng-click="delete(x.student.id,data.dates[1])" ng-show="x.status[1]==1"><a style="color: #32CD32" href="javascript:void(0)">√</a></td>
+            <td ng-click="add(x.student.id,data.dates[1])" ng-show="x.status[1]==0"><a style="color: #FF0000" href="javascript:void(0)">x</a></td>
+            <td ng-click="delete(x.student.id,data.dates[2])" ng-show="x.status[2]==1"><a style="color: #32CD32" href="javascript:void(0)">√</a></td>
+            <td ng-click="add(x.student.id,data.dates[2])" ng-show="x.status[2]==0"><a style="color: #FF0000" href="javascript:void(0)">x</a></td>
+        </tr>
+
+        </tbody>
+
+    </table>
+
+</div>

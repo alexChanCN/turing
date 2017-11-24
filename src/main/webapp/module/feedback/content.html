@@ -1,0 +1,25 @@
+<div  class="weui-cells__title">反馈的问题</div>
+<div  class="weui-panel weui-panel_access">
+    <div class="weui-panel__bd">
+        <a href="javascript:void(0);" ng-click="delete(x.id)" class="weui-media-box weui-media-box_appmsg" ng-repeat="x in feedbacks">
+
+            <div class="weui-media-box__bd">
+                <article class="weui-article">
+
+                    <section>
+
+
+                        <section>
+                            <h3>{{ x.date | date:'yyyy-MM-dd' }}</h3>
+                            <p>
+                                {{x.content}}
+                            </p>
+                        </section>
+                    </section>
+                </article>
+            </div>
+        </a>
+
+    </div>
+
+</div>

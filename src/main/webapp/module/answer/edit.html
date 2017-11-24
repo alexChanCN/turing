@@ -1,0 +1,15 @@
+<div class="weui-cells__title"></div>
+<form name="form">
+<div class="weui-cells weui-cells_form">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea ng-required="true" class="weui-textarea" ng-model="content" placeholder="请输入作业答案" rows="7"></textarea>
+            <div class="weui-textarea-counter"><span>0</span>/200</div>
+        </div>
+    </div>
+</div>
+<div class="weui-btn-area">
+    <button type="submit" class="weui-btn weui-btn_primary" ng-disabled="form.$invalid" ng-click="add()" id="showTooltips">确定</button>
+</div>
+</form>
+</div>

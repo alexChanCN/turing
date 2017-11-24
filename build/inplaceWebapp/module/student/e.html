@@ -1,0 +1,23 @@
+<div style="padding-top: 4%" class="weui-cells__title">默认添加到最新班级，导入前先添加班级。excel格式：第一列为学号，第二列为姓名</div>
+<form name="form">
+    <div class="weui-cells weui-cells_form">
+
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">excel</label></div>
+            <div class="weui-cell__bd">
+                <input ng-required="true" type="file" ngf-select="'.xls,.xlsx'" class="weui-input" ng-model="file" ngf-pattern="'.xls,.xlsx" accept="'.xls,.xlsx'"
+                       >
+            </div>
+
+        </div>
+    </div>
+    <div class="weui-btn-area">
+        <button type="submit" ng-disabled="form.$invalid" class="weui-btn weui-btn_primary" id="showTooltips" ng-click="upload()">确定</button>
+    </div>
+</form>
+<div class="weui-progress">
+    <div class="weui-progress__bar">
+        <div class="weui-progress__inner-bar js_progress" style="width: {{progress}}%;"></div>
+    </div>
+
+</div>

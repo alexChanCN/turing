@@ -1,0 +1,57 @@
+<div class="weui-tab">
+    <div class="weui-navbar">
+        <a class="weui-navbar__item {{tab1Active}}" ng-click="onShowTab1()" href="javascript:void(0)">
+            作业列表
+        </a>
+        <a class="weui-navbar__item {{tab2Active}}"ng-click="onShowTab2()" href="javascript:void(0)">
+            作业情况
+        </a>
+
+    </div>
+    <div class="weui-tab__bd">
+        <div ng-show="showTab1">
+            <div style="padding-top: 2%" class="weui-cells__title">未完成的作业,点击进行提交答案</div>
+            <div  class="weui-panel weui-panel_access" ng-repeat="x in tasks">
+                <div class="weui-panel__bd">
+                    <a href="#/answer/edit?tid={{x.id}}" class="weui-media-box weui-media-box_appmsg">
+
+                        <div class="weui-media-box__bd">
+                            <article class="weui-article">
+                                <section>
+                                        <p>
+                                           {{x.content}}
+                                        </p>
+                                    </section>
+                            </article>
+                        </div>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+        <div ng-show="showTab2">
+            <div style="padding-top: 2%" class="weui-cells__title">已经提交的作业</div>
+            <div  class="weui-panel weui-panel_access" ng-repeat="x in answers">
+                <div class="weui-panel__bd">
+                    <a href="javascript:void(0);" ng-click="delete(x.id)" class="weui-media-box weui-media-box_appmsg">
+                        <div class="weui-media-box__bd">
+                            <article class="weui-article">
+                                    <section>
+                                        <p>
+                                            {{x.content}}
+                                        </p>
+                                    </section>
+                            </article>
+                        </div>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
