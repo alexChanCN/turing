@@ -9,8 +9,11 @@ import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Request;
 import java.io.*;
 import java.util.Date;
 import java.util.HashMap;
@@ -23,7 +26,7 @@ import java.util.Map;
 @Path("/file")
 @Produces(MediaType.APPLICATION_JSON)
 public class FileCtrl {
-    private final String filePath = "C:/upload/";
+    //private final String filePath = "C:/upload/";
 
     @Autowired
     IUploadService uploadService;
@@ -33,9 +36,10 @@ public class FileCtrl {
     @POST
     @Path("upload")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public @ResponseBody Map<String,String> upload(@FormDataParam("file") InputStream fileInputStream,
-                                                   @FormDataParam("file") FormDataContentDisposition contentDispositionHeader,
-                                                   @HeaderParam("token")String openid) throws IOException {
+    public Map<String,String> upload(@FormDataParam("file") InputStream fileInputStream,
+                                     @FormDataParam("file") FormDataContentDisposition contentDispositionHeader,
+                                     @HeaderParam("token")String openid,
+                                     @Context HttpServletRequest request) throws IOException {
         Student student = studentService.getByWeChatId(openid);
         String fileName = contentDispositionHeader.getFileName();
         String prefix = fileName.substring(0,fileName.lastIndexOf("."));
@@ -43,11 +47,10 @@ public class FileCtrl {
         Date date = new Date();
         Long dateString = date.getTime();
         String newFileName = prefix + "_" + dateString + suffix;
-        System.out.println(newFileName);
-        String t=contentDispositionHeader.getName();
-        //System.out.println(fileName+" "+t);
-        //File file = new File("h:/upload/" + fileName);
-        File file = new File(filePath + newFileName);
+        //String path  = request.getContextPath();
+        String url = request.getServletContext().getRealPath("/") ;
+        File file = new File(url + "/file/" + newFileName);
+        System.out.println(file.getAbsolutePath());
         File parent = file.getParentFile();
         //判断目录是否存在，不在创建
         if(parent!=null&&!parent.exists()){
