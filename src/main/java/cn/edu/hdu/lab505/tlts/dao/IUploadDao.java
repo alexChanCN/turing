@@ -1,5 +1,6 @@
 package cn.edu.hdu.lab505.tlts.dao;
 
+import cn.edu.hdu.lab505.tlts.domain.Student;
 import cn.edu.hdu.lab505.tlts.domain.Upload;
 
 import java.util.List;
@@ -10,6 +11,8 @@ import java.util.List;
 public interface IUploadDao {
 
     List<Upload> listAll();
+
+    List<Upload> listAllByStudent(Student student);
 
     Long save(Upload upload);
 }

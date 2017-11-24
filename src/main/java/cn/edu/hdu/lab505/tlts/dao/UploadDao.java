@@ -1,6 +1,7 @@
 package cn.edu.hdu.lab505.tlts.dao;
 
 import cn.edu.hdu.lab505.tlts.common.AbstractHibernateCurdDaoSupport;
+import cn.edu.hdu.lab505.tlts.domain.Student;
 import cn.edu.hdu.lab505.tlts.domain.Upload;
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +16,19 @@ public class UploadDao extends AbstractHibernateCurdDaoSupport<Upload> implement
     @Override
     public List<Upload> listAll() {
         List<Upload> list = findAll();
+        if (list.isEmpty()) {
+            return null;
+        } else {
+            return list;
+        }
+    }
+
+    @Override
+    public List<Upload> listAllByStudent(Student student) {
+
+        Upload upload = new Upload();
+        upload.setStudent(student);
+        List<Upload> list = getHibernateTemplate().findByExample(upload);
         if (list.isEmpty()) {
             return null;
         } else {

@@ -20,4 +20,5 @@ public interface IStudentDao extends ICurdDaoSupport<Student> {
     List<Student> findByPunchDateAndLesson(Date date, Lesson lesson);
 
     Student getByStudentIdAndName(Long studentId, String name);
+
 }

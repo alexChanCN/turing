@@ -14,8 +14,8 @@ public class Upload implements Serializable{
     @GeneratedValue
     private Long id;
     private Date datetime;
-    /*@ManyToOne
-    private Student student;*/
+    @ManyToOne
+    private Student student;
     private Integer status;
     private String fileName;
 
@@ -35,13 +35,13 @@ public class Upload implements Serializable{
         this.datetime = datetime;
     }
 
-    /*public Student getStudent() {
+    public Student getStudent() {
         return student;
     }
 
     public void setStudent(Student student) {
         this.student = student;
-    }*/
+    }
 
     public Integer getStatus() {
         return status;
