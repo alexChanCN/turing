@@ -42,7 +42,8 @@ public class FileCtrl {
                                      @Context HttpServletRequest request) throws IOException {
         Student student = studentService.getByWeChatId(openid);
         String fileName = contentDispositionHeader.getFileName();
-        String prefix = fileName.substring(0,fileName.lastIndexOf("."));
+        String prefix = new String(fileName.substring(0,fileName.lastIndexOf(".")).getBytes("ISO-8859-1"),"utf-8");
+        System.out.println(prefix);
         String suffix = fileName.substring(fileName.lastIndexOf("."),fileName.length());
         Date date = new Date();
         Long dateString = date.getTime();
