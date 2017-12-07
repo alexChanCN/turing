@@ -26,9 +26,11 @@ public class UploadDao extends AbstractHibernateCurdDaoSupport<Upload> implement
     @Override
     public List<Upload> listAllByStudent(Student student) {
 
-        Upload upload = new Upload();
+        String ql = "from Upload u where u.student=:student";
+        /*Upload upload = new Upload();
         upload.setStudent(student);
-        List<Upload> list = getHibernateTemplate().findByExample(upload);
+        List<Upload> list = getHibernateTemplate().findByExample(upload);*/
+        List<Upload> list = (List<Upload>) getHibernateTemplate().findByNamedParam(ql,"student",student);
         if (list.isEmpty()) {
             return null;
         } else {

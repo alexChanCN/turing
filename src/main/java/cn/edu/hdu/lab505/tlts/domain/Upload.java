@@ -58,4 +58,15 @@ public class Upload implements Serializable{
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
+
+    @Override
+    public String toString() {
+        return "Upload{" +
+                "id=" + id +
+                ", datetime=" + datetime +
+                ", student=" + student +
+                ", status=" + status +
+                ", fileName='" + fileName + '\'' +
+                '}';
+    }
 }

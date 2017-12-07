@@ -35,9 +35,15 @@ public class FileCtrl {
     @Produces(MediaType.APPLICATION_JSON)
     public Upload getOneByStudent(@PathParam("id")Long id){
         Student student = studentService.get(id);
+        if (student == null) return null;
+        /*Student student = new Student();
+        student.setId(id);*/
         List<Upload> list = uploadService.listAll(student);
         int size = list.size();
-        return list.get(size-1);
+        if(size == 0)
+            return null;
+        else
+            return list.get(size-1);
     }
 
     /*private static final String filepath = "E:/circulation-checking-rest/src/resources/download/test1.uml";
