@@ -1,5 +1,7 @@
 package cn.edu.hdu.lab505.tlts.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -16,10 +18,13 @@ public class Lesson implements Serializable {
     private Long id;
     @Column(nullable = false, unique = true)
     private String name;
+    @JsonIgnore
     @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Student> studentSet = new HashSet<>();
+    @JsonIgnore
     @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Task> taskSet = new HashSet<>();
+    @JsonIgnore
     @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Attendance> attendanceSet = new HashSet<>();
 

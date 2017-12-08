@@ -11,7 +11,11 @@ import java.util.List;
 public interface IUploadService {
     List<Upload> listAll();
 
-    List<Upload> listAll(Student student);
+    Upload getOneByStudent(Student student);
+
+    List<Upload> listAllByLessonId(Long id);
 
     Long save(Upload upload);
+
+    void saveOrUpdate(Upload upload);
 }

@@ -42,15 +42,15 @@ public class FileCtrl {
                                      @Context HttpServletRequest request) throws IOException {
         Student student = studentService.getByWeChatId(openid);
         String fileName = contentDispositionHeader.getFileName();
-        String prefix = new String(fileName.substring(0,fileName.lastIndexOf(".")).getBytes("ISO-8859-1"),"utf-8");
-        System.out.println(prefix);
+        fileName = new String(fileName.getBytes("ISO-8859-1"),"utf-8");
+        /*String prefix = new String(fileName.substring(0,fileName.lastIndexOf(".")).getBytes("ISO-8859-1"),"utf-8");
         String suffix = fileName.substring(fileName.lastIndexOf("."),fileName.length());
         Date date = new Date();
         Long dateString = date.getTime();
-        String newFileName = prefix + "_" + dateString + suffix;
-        //String path  = request.getContextPath();
+        String newFileName = prefix + "_" + dateString + suffix;*/
+
         String url = request.getServletContext().getRealPath("/") ;
-        File file = new File(url + "/file/" + newFileName);
+        File file = new File(url + "/file/" + fileName);
         System.out.println(file.getAbsolutePath());
         File parent = file.getParentFile();
         //判断目录是否存在，不在创建
@@ -68,31 +68,44 @@ public class FileCtrl {
         outputStream.close();
         fileInputStream.close();
 
-        Upload upload = new Upload();
-        upload.setDatetime(date);
-        upload.setFileName(newFileName);
-        upload.setStudent(student);
-        uploadService.save(upload);
+        Upload upload = uploadService.getOneByStudent(student);
+        Date date = new Date();
+        if(upload != null){//已存在上传记录
+            upload.setDatetime(date);
+            upload.setStatus(1);
+            upload.setFileName(fileName);
+        }else {
+            upload.setDatetime(date);
+            upload.setFileName(fileName);
+            upload.setStudent(student);
+            upload.setLessonId(student.getLesson().getId());
+        }
+        uploadService.saveOrUpdate(upload);
         Map<String,String> message= new HashMap<>();
-        message.put("fileName",newFileName);
+        message.put("fileName",fileName);
         return message;
-    }
-    @GET
-    @Path("list")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Upload> listAllByStudent(@HeaderParam("token")String openid){
-        Student student = studentService.getByWeChatId(openid);
-        return uploadService.listAll(student);
     }
 
     @GET
+    @Path("list")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Upload getByStudent(@HeaderParam("token")String openid){
+        Student student = studentService.getByWeChatId(openid);
+        return uploadService.getOneByStudent(student);
+    }
+
+   /* @GET
     @Path("newest")
     @Produces(MediaType.APPLICATION_JSON)
     public Upload getOneByStudent(@HeaderParam("token")String openid){
         Student student = studentService.getByWeChatId(openid);
-        List<Upload> list = uploadService.listAll(student);
-        int size = list.size();
-        return list.get(size-1);
-    }
+        List<Upload> list = uploadService.getOneByStudent(student);
+       *//* int size = list.size();
+        return list.get(size-1);*//*
+       if (list.size() > 0)
+           return list.get(0);
+       else
+           return null;
+    }*/
 
 }

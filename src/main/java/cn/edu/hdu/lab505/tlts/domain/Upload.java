@@ -18,6 +18,7 @@ public class Upload implements Serializable{
     private Student student;
     private Integer status;
     private String fileName;
+    private Long lessonId;
 
     public Long getId() {
         return id;
@@ -57,6 +58,14 @@ public class Upload implements Serializable{
 
     public void setFileName(String fileName) {
         this.fileName = fileName;
+    }
+
+    public Long getLessonId() {
+        return lessonId;
+    }
+
+    public void setLessonId(Long lessonId) {
+        this.lessonId = lessonId;
     }
 
     @Override

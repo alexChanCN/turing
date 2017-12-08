@@ -1,5 +1,6 @@
 package cn.edu.hdu.lab505.tlts.controller.admin;
 
+import cn.edu.hdu.lab505.tlts.domain.Lesson;
 import cn.edu.hdu.lab505.tlts.domain.Student;
 import cn.edu.hdu.lab505.tlts.domain.Upload;
 import cn.edu.hdu.lab505.tlts.service.IStudentService;
@@ -22,28 +23,35 @@ public class FileCtrl {
     IUploadService uploadService;
     @Autowired
     IStudentService studentService;
+
     @GET
-    @Path("list/{id}")
+    @Path("lesson/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Upload> listAllByLesson(@PathParam("id")Long id){
+        Lesson lesson = new Lesson();
+        lesson.setId(id);
+        Student student = new Student();
+        student.setLesson(lesson);
+        return uploadService.listAllByLessonId(id);
+    }
+
+    /*@GET
+    @Path("student/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Upload> listAllByStudent(@PathParam("id")Long id){
         Student student = studentService.get(id);
-        return uploadService.listAll(student);
-    }
+        return uploadService.getOneByStudent(student);
+    }*/
 
     @GET
-    @Path("newest/{id}")
+    @Path("student/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Upload getOneByStudent(@PathParam("id")Long id){
         Student student = studentService.get(id);
         if (student == null) return null;
         /*Student student = new Student();
         student.setId(id);*/
-        List<Upload> list = uploadService.listAll(student);
-        int size = list.size();
-        if(size == 0)
-            return null;
-        else
-            return list.get(size-1);
+        return uploadService.getOneByStudent(student);
     }
 
     /*private static final String filepath = "E:/circulation-checking-rest/src/resources/download/test1.uml";

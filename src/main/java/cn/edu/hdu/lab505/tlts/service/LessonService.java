@@ -7,6 +7,8 @@ import cn.edu.hdu.lab505.tlts.domain.Lesson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by hhx on 2017/1/10.
  */
@@ -23,6 +25,11 @@ public class LessonService extends AbstractCurdServiceSupport<Lesson> implements
     @Override
     public Lesson getDefaultLesson() {
         return ((ILessonDao) getCurdDao()).getMaxIdLesson();
+    }
+
+    @Override
+    public List<Lesson> getList() {
+        return lessonDao.getList();
     }
 }
 

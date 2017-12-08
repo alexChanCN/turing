@@ -38,4 +38,13 @@ public class UploadServiceTest {
         }
     }
 
+    @Test
+    public void testFindByLesson(){
+        List<Upload> uploads = uploadDao.listAllByLessonId(3l);
+        for (Upload upload:uploads) {
+            System.out.println(upload);
+        }
+    }
+
+
 }

@@ -13,7 +13,7 @@ import java.util.List;
  * Created by ShineChan on 2017/11/24.
  */
 @Service
-public class UploadService implements IUploadService{
+public class UploadService implements IUploadService {
 
     @Autowired
     IUploadDao uploadDao;
@@ -24,8 +24,17 @@ public class UploadService implements IUploadService{
     }
 
     @Override
-    public List<Upload> listAll(Student student) {
-        return uploadDao.listAllByStudent(student);
+    public Upload getOneByStudent(Student student) {
+        List<Upload> list = uploadDao.getByStudent(student);
+        if (list.size() > 0)
+            return list.get(0);
+        else
+            return null;
+    }
+
+    @Override
+    public List<Upload> listAllByLessonId(Long id) {
+        return uploadDao.listAllByLessonId(id);
     }
 
     @Transactional
@@ -33,4 +42,12 @@ public class UploadService implements IUploadService{
     public Long save(Upload upload) {
         return uploadDao.save(upload);
     }
+
+    @Transactional
+    @Override
+    public void saveOrUpdate(Upload upload) {
+        uploadDao.saveOrUpdate(upload);
+    }
+
+
 }

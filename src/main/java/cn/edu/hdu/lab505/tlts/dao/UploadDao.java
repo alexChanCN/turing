@@ -24,7 +24,7 @@ public class UploadDao extends AbstractHibernateCurdDaoSupport<Upload> implement
     }
 
     @Override
-    public List<Upload> listAllByStudent(Student student) {
+    public List<Upload> getByStudent(Student student) {
 
         String ql = "from Upload u where u.student=:student";
         /*Upload upload = new Upload();
@@ -39,8 +39,30 @@ public class UploadDao extends AbstractHibernateCurdDaoSupport<Upload> implement
     }
 
     @Override
+    public List<Upload> listAllByLessonId(Long lessonId) {
+       /* String ql = "from Upload u where u.lessonId=:lessonId";
+        List<Upload> list = (List<Upload>) getHibernateTemplate().findByNamedParam(ql,"lessonId",lessonId);*/
+        Upload upload = new Upload();
+        upload.setLessonId(lessonId);
+        List<Upload> list = getHibernateTemplate().findByExample(upload);
+
+        if (list.isEmpty()) {
+            return null;
+        } else {
+            return list;
+        }
+    }
+
+    @Override
     public Long save(Upload upload) {
         Long id = (Long) getHibernateTemplate().save(upload);
         return id;
     }
+
+    @Override
+    public void saveOrUpdate(Upload upload) {
+        getHibernateTemplate().saveOrUpdate(upload);
+    }
+
+
 }

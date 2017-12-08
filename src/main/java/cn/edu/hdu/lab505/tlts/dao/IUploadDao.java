@@ -12,7 +12,12 @@ public interface IUploadDao {
 
     List<Upload> listAll();
 
-    List<Upload> listAllByStudent(Student student);
+    List<Upload> getByStudent(Student student);
+
+    List<Upload> listAllByLessonId(Long id);
 
     Long save(Upload upload);
+
+    void saveOrUpdate(Upload upload);
+
 }

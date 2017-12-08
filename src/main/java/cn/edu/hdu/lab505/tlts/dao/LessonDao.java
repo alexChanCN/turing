@@ -24,4 +24,9 @@ public class LessonDao extends AbstractHibernateCurdDaoSupport<Lesson> implement
             return list.get(0);
         }
     }
+
+    @Override
+    public List<Lesson> getList() {
+        return findAll();
+    }
 }
