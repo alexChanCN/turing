@@ -27,6 +27,9 @@ public class LessonDao extends AbstractHibernateCurdDaoSupport<Lesson> implement
 
     @Override
     public List<Lesson> getList() {
-        return findAll();
+        String ql = "from Lesson l ";
+        HibernateTemplate hibernateTemplate=getHibernateTemplate();
+        return (List<Lesson>) hibernateTemplate.find(ql);
+        //return findAll();
     }
 }

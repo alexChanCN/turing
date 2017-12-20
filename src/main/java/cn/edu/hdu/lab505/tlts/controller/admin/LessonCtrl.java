@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by hhx on 2017/1/14.
@@ -26,8 +28,27 @@ public class LessonCtrl {
     public void add(Lesson lesson) {
         getLessonService().insert(lesson);
     }
+
     @GET
-    public List<Lesson> get() {
-        return lessonService.getList();
+    @Path("list")
+    public Map<Long, String> getList() {
+        List<Lesson> list = lessonService.getList();
+        Map<Long, String> map = new HashMap<>();
+        for (Lesson lesson : list) {
+            Long id = lesson.getId();
+            String name = lesson.getName();
+            map.put(id, name);
+        }
+        return map;
+    }
+
+    @GET
+    public Map<Long, String> get() {
+        Lesson lesson = lessonService.getDefaultLesson();
+        Map<Long, String> map = new HashMap<>();
+        Long id = lesson.getId();
+        String name = lesson.getName();
+        map.put(id, name);
+        return map;
     }
 }

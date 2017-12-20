@@ -40,6 +40,15 @@ function myAppRouteConfig($routeProvider, $httpProvider) {
     }).when('/answer/edit', {
         controller: answerEditCtrl,
         templateUrl: 'module/answer/edit.html'
+    }).when('/answer/upfile',{
+        controller:fileupCtrl,
+        templateUrl:'module/answer/upfile.html'
+    }).when('/task/filecontent',{
+        controller:adminfilelistCtrl,
+        templateUrl:'module/task/filecontent.html'
+    }).when('/task/selectlesson',{
+        controller:selectlessonCtrl,
+        templateUrl:'module/task/selectlesson.html'
     });
     //管理模块
     /* .when('/profilemgnt', {

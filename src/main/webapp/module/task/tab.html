@@ -6,7 +6,9 @@
         <a class="weui-navbar__item {{tab2Active}}" ng-click="onShowTab2()" href="javascript:void(0)">
             作业情况
         </a>
-
+        <a class="weui-navbar__item {{tab3Active}}" ng-click="onShowTab3()" href="javascript:void(0)">
+            大作业情况
+        </a>
     </div>
     <div class="weui-tab__bd">
         <div ng-show="showTab1==1">
@@ -56,10 +58,50 @@
                     <div class="weui-cell__ft">
                     </div>
                 </a>
-
             </div>
-
         </div>
+        <!--<a href="#/task/selectlesson">-->
+        <div ng-show="showTab3==1">
+            <!--<a class="weui-cell weui-cell_access" href="#/task/selectlesson">点击查看</a>-->
+            <!--<div  class="weui-cells__title">点击查看</div>-->
+            <!--<div class="weui-cells" >-->
+                <!--<a class="weui-cell weui-cell_access" ng-repeat="x in students" href="#/task/filecontent?sid={{x.id}}">-->
+                    <!--<div class="weui-cell__bd">-->
+                        <!--<p>{{x.name}}</p>-->
+                    <!--</div>-->
+                    <!--<div class="weui-cell__ft">-->
+                    <!--</div>-->
+                <!--</a>-->
+        <!--</div>-->
 
+            <div class="weui-cell">
+                <div class="weui-cell__hd">
+                    <label for="name" class="weui-label">课程</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" ng-model="lesson" id="lesson" type="text" value="">
+                </div>
+            </div>
+            <a ng-click="import(files)" class="weui-btn weui-btn_mini weui-btn_primary">导出全部</a>
+            <div class="weui-cell">
+                <div  class="weui-cell__bd">
+                        <a href="javascript:void(0);"  ng-repeat="x in files" ng-click="adminviewfile(x.fileName)" class="weui-media-box weui-media-box_appmsg">
+                            <div class="weui-media-box__bd">
+                                <article class="weui-article">
+                                    <section>
+                                        <p>
+                                            {{x.fileName}}
+                                        </p>
+                                    </section>
+                                </article>
+                            </div>
+                        </a>
+                </div>
+            </div>
+    </div>
     </div>
 </div>
+
+
+
+

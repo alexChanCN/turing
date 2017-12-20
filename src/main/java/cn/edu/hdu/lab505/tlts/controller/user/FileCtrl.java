@@ -74,13 +74,15 @@ public class FileCtrl {
             upload.setDatetime(date);
             upload.setStatus(1);
             upload.setFileName(fileName);
+            uploadService.saveOrUpdate(upload);
         }else {
-            upload.setDatetime(date);
-            upload.setFileName(fileName);
-            upload.setStudent(student);
-            upload.setLessonId(student.getLesson().getId());
+            Upload newUpload = new Upload();
+            newUpload.setDatetime(date);
+            newUpload.setFileName(fileName);
+            newUpload.setStudent(student);
+            newUpload.setLessonId(student.getLesson().getId());
+            uploadService.save(newUpload);
         }
-        uploadService.saveOrUpdate(upload);
         Map<String,String> message= new HashMap<>();
         message.put("fileName",fileName);
         return message;

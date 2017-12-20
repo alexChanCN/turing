@@ -18,13 +18,13 @@ public class Lesson implements Serializable {
     private Long id;
     @Column(nullable = false, unique = true)
     private String name;
-    @JsonIgnore
+    //@JsonIgnore
     @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Student> studentSet = new HashSet<>();
-    @JsonIgnore
+    //@JsonIgnore
     @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Task> taskSet = new HashSet<>();
-    @JsonIgnore
+    //@JsonIgnore
     @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Attendance> attendanceSet = new HashSet<>();
 
@@ -68,5 +68,11 @@ public class Lesson implements Serializable {
         this.studentSet = studentSet;
     }
 
-
+    @Override
+    public String toString() {
+        return "Lesson{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

@@ -26,10 +26,10 @@ public class UploadService implements IUploadService {
     @Override
     public Upload getOneByStudent(Student student) {
         List<Upload> list = uploadDao.getByStudent(student);
-        if (list.size() > 0)
-            return list.get(0);
-        else
+        if (list==null)
             return null;
+        else
+            return list.get(0);
     }
 
     @Override

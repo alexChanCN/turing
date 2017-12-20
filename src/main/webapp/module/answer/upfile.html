@@ -1,0 +1,44 @@
+<!--<div class="weui-cells__title"></div>-->
+<!--<form name="form">-->
+    <!--<div class="weui-cells weui-cells_form">-->
+        <!--<div class="weui-cell">-->
+            <!--<div class="weui-cell__bd">-->
+                <!--<textarea ng-required="true" class="weui-textarea" ng-model="content" placeholder="请输入作业答案" rows="7"></textarea>-->
+                <!--<div class="weui-textarea-counter"><span>0</span>/200</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="weui-btn-area">-->
+        <!--<button type="submit" class="weui-btn weui-btn_primary" ng-disabled="form.$invalid" ng-click="add()" id="showTooltips">确定</button>-->
+    <!--</div>-->
+<!--</form>-->
+<!--</div>-->
+
+<!--<div class="page__bd">-->
+    <!--<div class="weui-gallery" id="gallery">-->
+        <!--<span class="weui-gallery__img" id="galleryImg"></span>-->
+        <!--<div class="weui-gallery__opr">-->
+            <!--<a href="javascript:" class="weui-gallery__del">-->
+                <!--<i class="weui-icon-delete weui-icon_gallery-delete"></i>-->
+            <!--</a>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <div class="weui-uploader">
+                    <div class="weui-uploader__hd">
+                         <p class="weui-uploader__title">单个文件上传</p>
+                    </div>
+
+                    <div class="weui-uploader__bd">
+                        <div id="uploadForm">
+                            <input id="file" type="file"/>
+                            <button id="upload" type="button" ng-click="fileup()">文件上传</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
