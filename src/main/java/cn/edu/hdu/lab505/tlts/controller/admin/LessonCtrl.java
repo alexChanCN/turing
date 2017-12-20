@@ -4,6 +4,7 @@ import cn.edu.hdu.lab505.tlts.domain.Lesson;
 import cn.edu.hdu.lab505.tlts.service.ILessonService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.print.DocFlavor;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.HashMap;
@@ -43,12 +44,11 @@ public class LessonCtrl {
     }
 
     @GET
-    public Map<Long, String> get() {
+    public Map<String, Object> get() {
         Lesson lesson = lessonService.getDefaultLesson();
-        Map<Long, String> map = new HashMap<>();
-        Long id = lesson.getId();
-        String name = lesson.getName();
-        map.put(id, name);
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", lesson.getId());
+        map.put("name", lesson.getName());
         return map;
     }
 }
